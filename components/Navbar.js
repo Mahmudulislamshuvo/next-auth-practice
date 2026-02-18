@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { signIn, signOut, auth } from "@/auth";
+import DosignIn from "./signIn";
+import DoSignOut from "./DoSignOut";
 
 export default async function Navbar() {
   const session = await auth();
@@ -16,33 +18,11 @@ export default async function Navbar() {
 
         {/* Mobile menu button */}
         <div className="hidden md:flex items-center space-x-4">
-          <Link
-            href="/booking"
-            className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-          >
-            Booking
-          </Link>
           {session ? (
-            <Link
-              href="/"
-              className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-            >
-              SignOut
-            </Link>
+            <DoSignOut />
           ) : (
             <>
-              <Link
-                href="/login"
-                className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Login
-              </Link>
-              <Link
-                href="/register"
-                className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Register
-              </Link>
+              <DosignIn />
             </>
           )}
 

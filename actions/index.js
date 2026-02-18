@@ -1,0 +1,11 @@
+"use server";
+
+import { signOut, signIn } from "@/auth";
+
+export async function handleSignOut() {
+  await signOut();
+}
+
+export async function handleSigIn() {
+  await signIn("google", { redirectTo: "/booking" });
+}
