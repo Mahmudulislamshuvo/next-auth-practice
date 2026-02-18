@@ -32,9 +32,7 @@ export default async function Navbar() {
               <Image
                 className="h-8 w-8 rounded-full"
                 src={
-                  session?.user
-                    ? session?.user?.image
-                    : "https://www.gravatar.com/avatar?d=mp&s=200"
+                  session?.user?.image || "https://www.gravatar.com/avatar?d=mp&s=200"
                 }
                 alt="User Avatar"
                 width={32}

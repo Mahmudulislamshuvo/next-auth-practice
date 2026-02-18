@@ -57,4 +57,22 @@ export const {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.image = user.image;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token?.id) {
+        session.user.id = token.id;
+      }
+      if (token?.image) {
+        session.user.image = token.image;
+      }
+      return session;
+    },
+  },
 });
