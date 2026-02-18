@@ -2,10 +2,11 @@
 
 import { handleCredentialsSignIn } from "@/actions";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
-  const router = useRouter;
+  const router = useRouter();
+
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -17,6 +18,7 @@ const LoginForm = () => {
       } else {
         console.log("Login successful:", response);
         router.push("/booking");
+        router.refresh();
       }
     } catch (error) {
       throw error;
@@ -24,7 +26,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form action={onSubmit} className="mt-8 space-y-6">
+    <form onSubmit={onSubmit} className="mt-8 space-y-6">
       <input type="hidden" name="remember" defaultValue="true" />
       <div className="-space-y-px rounded-md shadow-sm">
         <div>
